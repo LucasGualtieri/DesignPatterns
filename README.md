@@ -8,7 +8,6 @@ Welcome to my Head First Design Patterns study repository! This repo is dedicate
 - [Design Patterns Covered](#design-patterns-covered)
 - [Structure](#structure)
 - [Setup and Requirements](#setup-and-requirements)
-- [Contributing](#contributing)
 - [License](#license)
 
 ## Introduction
@@ -43,6 +42,7 @@ The repository is organized into directories for each design pattern. Each direc
 
 Example directory structure:
 
+```
 ├── Strategy
 │ ├── examples
 │ ├── exercises
@@ -51,6 +51,8 @@ Example directory structure:
 │ ├── examples
 │ ├── exercises
 │ └── README.md
+└── README.md
+```
 
 ## Setup and Requirements
 
@@ -76,8 +78,5 @@ javac examples/*.java
 java examples.YourExampleClass
 ```
 
-Contributing
-Contributions are welcome! If you have improvements or additional examples, please open a pull request. Make sure to follow the repository structure and provide clear documentation for any new content.
-
-License
+## License
 This repository is licensed under the MIT License. See the LICENSE file for more information.
