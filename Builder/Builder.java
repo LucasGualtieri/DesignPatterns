@@ -57,12 +57,21 @@ public class Builder {
 
 		@Override
 		public String toString() {
-			return String.format("Nome: %s, Sobrenome: %s\nIdade: %d, Altura: %d, Peso: %.2f.", nome, sobrenome, idade, altura, peso);
+
+			StringBuilder builder = new StringBuilder();
+
+			builder.append(String.format("Nome: %s\n", nome));
+			builder.append(String.format("Sobrenome: %s\n", sobrenome));
+			builder.append(String.format("Idade: %d\n", idade));
+			builder.append(String.format("Altura: %dcm\n", altura));
+			builder.append(String.format("Peso: %.2f\n", peso));
+
+			return builder.toString();
 		}
 	}
 
 	public static void main(String[] args) {
-		
+
 		Pessoa p = new PessoaBuilder()
 		.nome("Lucas")
 		.sobrenome("Gualtieri")
