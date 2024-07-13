@@ -1,10 +1,10 @@
-package DuckGame;
+package Strategy;
 
-import DuckGame.Ducks.Duck;
-import DuckGame.Ducks.DuckCall;
-import DuckGame.Ducks.MallardDuck;
-import DuckGame.Ducks.ModelDuck;
-import DuckGame.FlyBehaviors.FlyRocketPowered;
+import Strategy.Ducks.Duck;
+import Strategy.Ducks.DuckCall;
+import Strategy.Ducks.MallardDuck;
+import Strategy.Ducks.ModelDuck;
+import Strategy.FlyBehaviors.FlyRocketPowered;
 
 public class MiniDuckSimulator {
 

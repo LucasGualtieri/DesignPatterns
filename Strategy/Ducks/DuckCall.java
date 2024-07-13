@@ -1,7 +1,7 @@
-package DuckGame.Ducks;
+package Strategy.Ducks;
 
-import DuckGame.QuackBehaviors.Quack;
-import DuckGame.QuackBehaviors.QuackBehavior;
+import Strategy.QuackBehaviors.Quack;
+import Strategy.QuackBehaviors.QuackBehavior;
 
 public class DuckCall {
 

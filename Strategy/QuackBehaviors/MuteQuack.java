@@ -1,4 +1,4 @@
-package DuckGame.QuackBehaviors;
+package Strategy.QuackBehaviors;
 
 public class MuteQuack implements QuackBehavior {
 

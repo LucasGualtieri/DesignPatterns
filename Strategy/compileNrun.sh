@@ -9,4 +9,4 @@ javac -d bin -sourcepath . *.java Ducks/*.java FlyBehaviors/*.java QuackBehavior
 echo "Compilation complete."
 
 # Run the main class
-java -cp bin DuckGame.MiniDuckSimulator
+java -cp bin Strategy.MiniDuckSimulator

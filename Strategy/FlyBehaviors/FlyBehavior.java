@@ -1,4 +1,4 @@
-package DuckGame.FlyBehaviors;
+package Strategy.FlyBehaviors;
 
 public interface FlyBehavior {
 
