@@ -1,0 +1,18 @@
+Estou em dúvida entre:
+	- Usar a classe arquivo como a classe instaciavel e passar os comportamentos que variam usando Strategy Pattern
+		- Não acho que seja uma boa alternativa considerando que entidades diferentes podem ter "métodos CRUD" diferentes.
+	- Usar herança:
+		- Deixar a classe arquivo como uma classe abstrata e com alguns métodos abstratos. Arquivo = new ArquivoLivro();
+		- Ai eu tentaria deixar o máximo de coisas que não variam (CREATE e DELETE) na Base Class e as sub classes fazem o resto.
+		- Nessa brincadeira eu pensei também eu fazer umas interfaces tipo CRUDMenu, ai no read e posso fazer algo do tipo:
+			- public int READ(???) {
+				CRUDMenu();
+				super.read(???); // Apesar de que isso aqui é BEM feio, e seria mais legal de fazer com o Strategy
+			}
+	- Seria muito legal também poder ter uma interface "Indice" para que eu possoa ter uma lista / array de indices que seriam observadores.
+	- Ai toda vez que um registro for alterado (CREATE, UPDATE, DELETE) eu chamo passo pra eles todos um objeto com todas as informações que eles podem precisar
+	- Só ainda não sei como integrar os indices especificos de uma entidade com o indice direto, talvez depois de ver o "modulo obsever" eu frague melhor
+
+	- Por hora só preciso focar em melhorar as classes Arquivo
+
+	- Não esquecer de usar a minha classe "StreamManager" (e garantir que ela esteja funcionand direitinho).
