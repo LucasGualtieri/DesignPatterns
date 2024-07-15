@@ -1,10 +1,10 @@
-package src.Observer.Java;
+package src.Observer.Native;
 
-import src.Observer.Java.Displays.CurrentConditionsDisplay;
-import src.Observer.Java.Displays.DisplayElement;
-import src.Observer.Java.Displays.ForecastDisplay;
-import src.Observer.Java.Displays.HeatIndexDisplay;
-import src.Observer.Java.Displays.StatisticsDisplay;
+import src.Observer.Native.Displays.CurrentConditionsDisplay;
+import src.Observer.Native.Displays.DisplayElement;
+import src.Observer.Native.Displays.ForecastDisplay;
+import src.Observer.Native.Displays.HeatIndexDisplay;
+import src.Observer.Native.Displays.StatisticsDisplay;
 
 public class WeatherStation {
 

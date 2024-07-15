@@ -1,8 +1,8 @@
-package src.Observer.Java.Displays;
+package src.Observer.Native.Displays;
 
 import java.util.Observable;
 import java.util.Observer;
-import src.Observer.Java.WeatherData;
+import src.Observer.Native.WeatherData;
 
 @SuppressWarnings("deprecation")
 public class CurrentConditionsDisplay implements DisplayElement, Observer {

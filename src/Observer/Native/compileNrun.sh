@@ -9,4 +9,4 @@ javac -d bin -sourcepath . *.java Displays/*.java
 # echo "Compilation complete."
 
 # Run the main class
-java -cp bin src.Observer.Java.WeatherStation
+java -cp bin src.Observer.Native.WeatherStation

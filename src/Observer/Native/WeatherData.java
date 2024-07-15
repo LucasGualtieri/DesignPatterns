@@ -1,4 +1,4 @@
-package src.Observer.Java;
+package src.Observer.Native;
 
 import java.util.Observable;
 

@@ -1,4 +1,4 @@
-package src.Observer.Java.Displays;
+package src.Observer.Native.Displays;
 
 import java.util.Observable;
 import java.util.Observer;
