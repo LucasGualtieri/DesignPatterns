@@ -8,9 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import Biblioteca.Entidades.Autores.ArquivoAutor;
-//import Biblioteca.Entidades.Autores.ArquivoAutor;
 import Biblioteca.Entidades.Livros.ArquivoLivro;
-//import Biblioteca.Entidades.Livros.Livro;
 import Biblioteca.EstruturasDeDados.Compressao.LZW;
 
 class Principal {

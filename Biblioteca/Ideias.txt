@@ -16,3 +16,10 @@ Estou em dúvida entre:
 	- Por hora só preciso focar em melhorar as classes Arquivo
 
 	- Não esquecer de usar a minha classe "StreamManager" (e garantir que ela esteja funcionand direitinho).
+
+	- Acho que o processo pra refatorar vai ser:
+		- Retirar o CREATE, DELETE, e UPDATE das subclasses, e deixar o read (talvez mudar esse nome) como abstrata na classe arquivo.
+		- Usar o Observer Pattern para lidar com os Indices.
+		- Os métodos CRUDMenu(), SortList() devem ser abstratos na classe, assim como os getNome()
+		- Não quero que a classe arquivo seja generica mais, mas pra isso vou ter que pensar no meu próprio Constructor<T> que vai ser bem suave na realidade
+		- O strategy pattern não será necessário, pois o comportamento que varia que é o READ() não é reutilizavel com o os FlyBeaviors (que varios patos diferentes usam o mesmo), cada entidade vai ter seu read proprio.

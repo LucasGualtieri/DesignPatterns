@@ -51,14 +51,14 @@ public class ArquivoLivro<T extends Registro> extends Arquivo<T> {
 		CriarStopWordsList();
 	}
 
-	public int create(T object) throws Exception {
+	public int create(Registro object) throws Exception {
 		super.create(true, registerMinLength, object);
 	    indiceIndiretoISBN.create(new ParIsbnId(((Livro)object).getISBN(), object.getID()));
 		createInvertida(((Livro)object).getTitulo(), object.getID());
 		return object.getID();
 	}
 	
-	protected int create(boolean createNewID, T object) throws Exception {
+	protected int create(boolean createNewID, Registro object) throws Exception {
 		super.create(createNewID, registerMinLength, object);
 		indiceIndiretoISBN.create(new ParIsbnId(((Livro)object).getISBN(), object.getID()));
 		createInvertida(((Livro)object).getTitulo(), object.getID());
@@ -111,13 +111,13 @@ public class ArquivoLivro<T extends Registro> extends Arquivo<T> {
 		String filePath = "EstruturasDeDados/StopWords.txt";
 		String fileLine;
 
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-            while ((fileLine = br.readLine()) != null) {
+		try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+			while ((fileLine = br.readLine()) != null) {
 				stopWords.add(fileLine);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private List<String> removerStopWords(String string) {

@@ -8,7 +8,7 @@ mkdir -p bin
 # javac -d bin -sourcepath . *.java
 javac -d bin -sourcepath . *.java Lib.java EstruturasDeDados/*.java EstruturasDeDados/Compressao/*.java EstruturasDeDados/Tuplas/*.java Entidades/Livros/*.java Entidades/Livros/Indices/*.java Entidades/Autores/*.java Entidades/Autores/Indices/*.java
 
-echo "Compilation complete."
+# echo "Compilation complete."
 
-# Run the main class
+# jun the main class
 java -cp bin Biblioteca.Principal

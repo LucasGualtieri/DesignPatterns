@@ -53,7 +53,7 @@ public abstract class Arquivo<T extends Registro> {
 		return create(createNewID, 0, object);
 	}
 
-	protected int create(boolean createNewID, int registerLength, T object) throws Exception {
+	protected int create(boolean createNewID, int registerLength, Registro object) throws Exception {
 		int ID = object.getID();
 
 		if (createNewID) {
