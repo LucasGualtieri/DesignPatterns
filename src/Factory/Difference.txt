@@ -1,0 +1,3 @@
+The simple factory only allows you to change the factory behavior,
+whilst the factory method (because it is implemented in a subclass) allows you
+to override some base class methods.
