@@ -1,9 +1,3 @@
-package src.Factory.AbstractFactory.IngredientFactories.Ingredients;
+package src.Factory.AbstractFactory.IngredientFactories.Ingredients.Clams;
 
-/**
- * Clams
- */
-public interface Clams {
-
-	
-}
+public interface Clams { }

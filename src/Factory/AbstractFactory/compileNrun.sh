@@ -4,7 +4,17 @@
 mkdir -p bin
 
 # Compile the Java files
-javac -d bin -sourcepath . *.java Pizzas/*.java Pizzas/GenericPizzas/*.java Pizzas/ChicagoStylePizzas/*.java Pizzas/NYStylePizzas/*.java PizzaStores/*.java
+javac -d bin -sourcepath .							\
+  *.java											\
+  Pizzas/*.java										\
+  PizzaStores/*.java								\
+  IngredientFactories/*.java						\
+  IngredientFactories/Ingredients/Cheese/*.java		\
+  IngredientFactories/Ingredients/Clams/*.java		\
+  IngredientFactories/Ingredients/Dough/*.java		\
+  IngredientFactories/Ingredients/Pepperoni/*.java	\
+  IngredientFactories/Ingredients/Sauce/*.java		\
+  IngredientFactories/Ingredients/Veggies/*.java
 
 # echo "Compilation complete."
 

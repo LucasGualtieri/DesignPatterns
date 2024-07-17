@@ -1,5 +1,6 @@
 package src.Factory.AbstractFactory.Pizzas;
 
+import src.Factory.AbstractFactory.IngredientFactories.PizzaIngredientFactory;
 import src.Factory.AbstractFactory.IngredientFactories.Ingredients.Cheese.Cheese;
 import src.Factory.AbstractFactory.IngredientFactories.Ingredients.Clams.Clams;
 import src.Factory.AbstractFactory.IngredientFactories.Ingredients.Dough.Dough;
@@ -16,6 +17,8 @@ public abstract class Pizza {
 	protected Cheese cheese;
 	protected Pepperoni pepperoni;
 	protected Clams clam;
+
+	protected PizzaIngredientFactory ingredientFactory;
 
 	public abstract void prepare();
 

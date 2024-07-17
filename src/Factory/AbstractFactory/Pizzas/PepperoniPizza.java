@@ -2,9 +2,9 @@ package src.Factory.AbstractFactory.Pizzas;
 
 import src.Factory.AbstractFactory.IngredientFactories.PizzaIngredientFactory;
 
-public class CheesePizza extends Pizza {
+public class PepperoniPizza extends Pizza {
 
-	public CheesePizza(PizzaIngredientFactory ingredientFactory) {
+	public PepperoniPizza(PizzaIngredientFactory ingredientFactory) {
 		this.ingredientFactory = ingredientFactory;
 	}
 
@@ -16,6 +16,7 @@ public class CheesePizza extends Pizza {
 		dough = ingredientFactory.createDough();
 		sauce = ingredientFactory.createSauce();
 		cheese = ingredientFactory.createCheese();
+		pepperoni = ingredientFactory.createPepperoni();
 	}
 
 	@Override

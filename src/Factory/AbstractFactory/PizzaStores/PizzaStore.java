@@ -1,5 +1,6 @@
 package src.Factory.AbstractFactory.PizzaStores;
 
+import src.Factory.AbstractFactory.IngredientFactories.PizzaIngredientFactory;
 import src.Factory.AbstractFactory.Pizzas.Pizza;
 import src.Factory.AbstractFactory.Pizzas.PizzaType;
 
@@ -14,7 +15,7 @@ public abstract class PizzaStore {
 	 * */
 	protected abstract Pizza createPizza(PizzaType type);
 
-	public static final String CHEESE = "cheese";
+	protected PizzaIngredientFactory ingredientFactory;
 
 	public final Pizza orderPizza(PizzaType type) {
 

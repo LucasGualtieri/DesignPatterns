@@ -4,8 +4,6 @@ import src.Factory.AbstractFactory.IngredientFactories.PizzaIngredientFactory;
 
 public class ClamPizza extends Pizza {
 
-	PizzaIngredientFactory ingredientFactory;
-
 	public ClamPizza(PizzaIngredientFactory ingredientFactory) {
 		this.ingredientFactory = ingredientFactory;
 	}
@@ -13,7 +11,7 @@ public class ClamPizza extends Pizza {
 	@Override
 	public void prepare() {
 
-		System.out.println("Preparing " + name);
+		System.out.println("Preparing a " + name);
 
 		dough = ingredientFactory.createDough();
 		sauce = ingredientFactory.createSauce();

@@ -4,6 +4,7 @@ import src.Factory.AbstractFactory.PizzaStores.ChicagoPizzaStore;
 import src.Factory.AbstractFactory.PizzaStores.NYPizzaStore;
 import src.Factory.AbstractFactory.PizzaStores.PizzaStore;
 import src.Factory.AbstractFactory.Pizzas.Pizza;
+import src.Factory.AbstractFactory.Pizzas.PizzaType;
 
 public class PizzaTestDrive {
 
@@ -12,10 +13,10 @@ public class PizzaTestDrive {
 		PizzaStore nyStore = new NYPizzaStore();
 		PizzaStore chicagoStore = new ChicagoPizzaStore();
 
-		Pizza pizza = nyStore.orderPizza(PizzaStore.CHEESE);
+		Pizza pizza = nyStore.orderPizza(PizzaType.CHEESE);
 		System.out.println("Ethan ordered a " + pizza + "\n");
 
-		pizza = chicagoStore.orderPizza("cheese");
+		pizza = chicagoStore.orderPizza(PizzaType.VEGGIE);
 		System.out.println("Joel ordered a " + pizza + "\n");
 	}
 }
