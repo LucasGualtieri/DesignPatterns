@@ -15,11 +15,6 @@ public class NYPizzaFactory implements SimplePizzaFactory {
 			pizza = new NYStyleCheesePizza();
 		}
 
-		else {
-			String errorMessage = "Invalid pizza, you should use the static members of the PizzaStore class.";
-			throw new IllegalArgumentException(errorMessage);
-		}
-
 		return pizza;
 	}
 
