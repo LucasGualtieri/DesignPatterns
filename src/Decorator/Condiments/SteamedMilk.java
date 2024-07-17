@@ -18,4 +18,7 @@ public class SteamedMilk extends CondimentDecorator {
 
 	@Override
 	public double cost() { return .10 + beverage.cost(); }
+
+	@Override
+	public String toString() { return getDescription(); }
 }
