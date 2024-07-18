@@ -22,12 +22,12 @@ public class ParIsbnId implements RegistroHashExtensivel<ParIsbnId> {
 
 	public ParIsbnId(String is, int i) {
 		try {
-		if (is.getBytes().length != 13)
+			if (is.getBytes().length != 13)
 			throw new Exception("O ISBN deve ter exatamente 13 dígitos");
-		this.isbn = is;
-		this.id = i;
+			this.isbn = is;
+			this.id = i;
 		} catch (Exception e) {
-		e.printStackTrace();
+			e.printStackTrace();
 		}
 	}
 

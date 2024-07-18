@@ -1,6 +1,5 @@
 package src.Biblioteca.Entidades.Autores;
 
-import java.lang.reflect.Constructor;
 import java.util.List;
 
 import src.Biblioteca.Arquivo;
@@ -9,7 +8,7 @@ import src.Biblioteca.Registro;
 import src.Biblioteca.Entidades.Autores.Indices.ParCPFId;
 import src.Biblioteca.EstruturasDeDados.HashExtensivel;
 
-public class ArquivoAutor<T extends Registro> extends Arquivo<T> {
+public class ArquivoAutor extends Arquivo {
 
 	// IndicadorDeTamanho + ID + CPF + Nome + Sobrenome + Idade
 	private final short registerMinLength = 33; // 2 + 4 + (2 + 11) + (2 + 3) (2 + 3) + 4.
@@ -18,10 +17,9 @@ public class ArquivoAutor<T extends Registro> extends Arquivo<T> {
 	HashExtensivel<ParCPFId> indiceIndiretoCPF;
 	// HashExtensivel<ParNomeID> indiceNome;
 
-	@SuppressWarnings("unchecked")
 	public ArquivoAutor(String filePath) throws NoSuchMethodException, SecurityException, Exception {
 		
-		super((Constructor<T>)Autor.getConstructor(), "Autor", filePath);
+		super(new Autor(), "Autor", filePath);
 
 		indiceIndiretoCPF = new HashExtensivel<>(
 			ParCPFId.getConstructor(), 4,
@@ -30,13 +28,13 @@ public class ArquivoAutor<T extends Registro> extends Arquivo<T> {
 		);
 	}
 
-	public int create(T object) throws Exception {
+	public int create(Registro object) throws Exception {
 		super.create(true, registerMinLength, object);
 		indiceIndiretoCPF.create(new ParCPFId(((Autor)object).getCPF(), object.getID()));
 		return object.getID();
 	}
 
-	protected int create(boolean createNewID, T object) throws Exception {
+	protected int create(boolean createNewID, Registro object) throws Exception {
 		super.create(createNewID, registerMinLength, object);
 		indiceIndiretoCPF.create(new ParCPFId(((Autor)object).getCPF(), object.getID()));
 		return object.getID();
@@ -77,7 +75,7 @@ public class ArquivoAutor<T extends Registro> extends Arquivo<T> {
 		return ID;
 	}
 
-	// public void update(int ID, T newObj) throws IOException, Exception {
+	// public void update(int ID, Registro newObj) throws IOException, Exception {
 	// 	ParIDEndereco pie = indiceDireto.read(ID);
 	// 	delete(pie.getId());
 	// 	create(false, newObj);
@@ -95,7 +93,7 @@ public class ArquivoAutor<T extends Registro> extends Arquivo<T> {
 	}
 
 	// Essa função permite que o usuário escolha de que forma gostaria de apresentar os dados na listagem
-	public int SortList(List<T> list) {
+	public int SortList(List<Registro> list) {
 		System.out.println("Ordenar por:");
 		System.out.println("1 - ID");
 		System.out.println("2 - Nome");
@@ -111,7 +109,7 @@ public class ArquivoAutor<T extends Registro> extends Arquivo<T> {
 				list.sort((l1, l2) -> Integer.compare(l1.getID(), l2.getID()));
 			break;
 			case 2:
-				list.sort((l1, l2) -> ((Autor)l1).getNome().compareTo(((Autor)l2).getNome()));
+				list.sort((l1, l2) -> ((Autor)l1).getName().compareTo(((Autor)l2).getName()));
 			break;
 				case 3:
 				list.sort((l1, l2) -> ((Autor)l1).getSobrenome().compareTo(((Autor)l2).getSobrenome()));
@@ -145,4 +143,10 @@ public class ArquivoAutor<T extends Registro> extends Arquivo<T> {
 	public String getNomeLowerCase() { return nome.toLowerCase(); }
 	public String getNomePlural() { return nome + "es"; }
 	public String getNomePluralLowerCase() { return nome.toLowerCase() + "es"; }
+
+	@Override
+	public List<Registro> readInvertida() throws Exception {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'readInvertida'");
+	}
 }

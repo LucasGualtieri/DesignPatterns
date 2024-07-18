@@ -9,7 +9,7 @@ import java.text.NumberFormat;
 import java.util.Locale;
 
 import src.Biblioteca.Lib;
-import src.Biblioteca.Registro;
+import src.Biblioteca.Registros.Registro;
 
 public class Livro implements Registro {
 	
@@ -62,7 +62,7 @@ public class Livro implements Registro {
 		try {
 			ba_in= new ByteArrayInputStream(ba);
 			DataInputStream dis = new DataInputStream(ba_in);
-	
+
 			this.ID = dis.readInt();
 			this.ISBN = dis.readUTF();
 			this.titulo = dis.readUTF();
@@ -116,26 +116,6 @@ public class Livro implements Registro {
 		.append(ISBN.substring(12));
 
 		return builder.toString();
-	}
-
-	// Método que faz uma interface com o usário e o permite que insira os dados do livro
-	public void setAll(boolean update) {
-		
-		System.out.print("Insira o ISBN do livro: ");
-		String aux = readISBN(update);
-		if (aux.length() > 0) this.ISBN = aux;
-		
-		System.out.print("Insira o título do livro: ");
-		aux = Lib.readString();
-		if (aux.length() > 0) this.titulo = aux;
-
-		System.out.print("Insira o nome do autor do livro: ");
-		aux = Lib.readString();
-		if (aux.length() > 0) this.autor = aux;
-
-		System.out.print("Insira o preço do livro: ");
-		float auxF = Lib.readFloat();
-		if (auxF != -1) preco = auxF;
 	}
 
 	// Função que printa o cabeçalho com os dados dos livros em formato CSV

@@ -206,7 +206,7 @@ public class Autor implements Registro {
 	}
 
 	public int compareTo(Autor y) {
-		return this.nome.compareTo(y.getNome());
+		return this.nome.compareTo(y.getName());
 	}
 
 	public void setID(int i) { this.ID = i; }
@@ -219,4 +219,7 @@ public class Autor implements Registro {
 	public String getSobrenome() { return this.sobrenome; }
 
 	public int getIdade() { return this.idade; }
+
+	@Override
+	public Registro newInstance() { return new Autor(); }
 }
