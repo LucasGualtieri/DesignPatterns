@@ -3,11 +3,14 @@ package src.Singleton;
 // The classic Singleton implementation
 public class Singleton {
 
-	// other useful instance variables here
+	// Other useful instance variables here.
 
 	private static Singleton uniqueInstance;
 
-	private Singleton() {}
+	// Beware! The deafault visibility of a constructor is PUBLIC (I'm pretty sure it is).
+	private Singleton() {
+		// Other useful default initializations.
+	}
 
 	public static Singleton getInstance() {
 
@@ -18,5 +21,5 @@ public class Singleton {
 		return uniqueInstance;
 	}
 
-	// other useful methods here
+	// Other useful methods here.
 }
