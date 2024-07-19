@@ -1,0 +1,59 @@
+package src.Command;
+
+import src.Command.Commands.Command;
+import src.Command.Commands.NoCommand;
+
+public class RemoteControl {
+
+	Command[] onCommands;
+	Command[] offCommands;
+	Command undoCommand;
+
+	public RemoteControl() {
+
+		onCommands = new Command[7];
+		offCommands = new Command[7];
+		undoCommand = new NoCommand();
+
+		Command noCommand = new NoCommand();
+
+		for (int i = 0; i < 7; i++) {
+			onCommands[i] = noCommand;
+			offCommands[i] = noCommand;
+		}
+	}
+
+	public void setCommand(int slot, Command onCommand, Command offCommand) {
+
+		onCommands[slot] = onCommand;
+		offCommands[slot] = offCommand;
+	}
+
+	public void onButtonWasPushed(int slot) {
+
+		onCommands[slot].execute();
+		undoCommand = onCommands[slot];
+	}
+
+	public void offButtonWasPushed(int slot) {
+
+		offCommands[slot].execute();
+		undoCommand = offCommands[slot];
+	}
+
+	public void undoButtonWasPushed() { undoCommand.undo(); }
+
+	@Override
+	public String toString() {
+
+		StringBuilder builder = new StringBuilder();
+
+		builder.append("----- Remote Control -----\n");
+
+		for (int i = 0; i < onCommands.length; i++) {
+			builder.append(String.format("[slot %d] %s\t%s\n", i, onCommands[i], offCommands[i]));
+		}
+
+		return builder.toString();
+	}
+}
