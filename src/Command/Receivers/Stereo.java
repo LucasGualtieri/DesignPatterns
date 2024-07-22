@@ -7,11 +7,11 @@ public class Stereo {
 	public Stereo(String location) { this.location = location; }
 
 	public void on() {
-		System.out.println(location + " Stereo is On.");
+		System.out.println(location + " Stereo is on.");
 	}
 
 	public void off() {
-		System.out.println(location + "Stereo is Off.");
+		System.out.println(location + " Stereo is off.");
 	}
 
 	public void setCD() {}

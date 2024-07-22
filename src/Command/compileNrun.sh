@@ -12,6 +12,8 @@ javac -d bin -sourcepath .		\
   Commands/GarageDoor/*.java	\
   Commands/Lights/*.java		\
   Commands/Stereo/*.java		\
+  Commands/Hottub/*.java		\
+  Commands/TV/*.java			\
 
 # echo "Compilation complete."
 

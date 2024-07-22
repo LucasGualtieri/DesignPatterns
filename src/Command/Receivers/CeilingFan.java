@@ -14,7 +14,7 @@ public class CeilingFan {
 	}
 
 	private void printState() {
-		System.out.println(String.format("%s Ceiling Fan is on %s.", location, state));
+		System.out.printf("%s Ceiling Fan is on %s.\n", location, state);
 	}
 
 	public void high() {
@@ -38,7 +38,7 @@ public class CeilingFan {
 	public void off() {
 
 		state = CeilingFanState.OFF;
-		System.out.println(String.format("%s Ceiling Fan is %s.", location, state));
+		System.out.printf("%s Ceiling Fan is %s.\n", location, state);
 	}
 
 	public CeilingFanState getState() { return state; }

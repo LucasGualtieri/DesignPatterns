@@ -1,5 +1,7 @@
 package src.Command;
 
+import java.util.Stack;
+
 import src.Command.Commands.Command;
 import src.Command.Commands.NoCommand;
 
@@ -7,13 +9,13 @@ public class RemoteControl {
 
 	Command[] onCommands;
 	Command[] offCommands;
-	Command undoCommand;
+	Stack<Command> undoCommands;
 
 	public RemoteControl() {
 
 		onCommands = new Command[7];
 		offCommands = new Command[7];
-		undoCommand = new NoCommand();
+		undoCommands = new Stack<>();
 
 		Command noCommand = new NoCommand();
 
@@ -32,16 +34,19 @@ public class RemoteControl {
 	public void onButtonWasPushed(int slot) {
 
 		onCommands[slot].execute();
-		undoCommand = onCommands[slot];
+		undoCommands.add(onCommands[slot]);
 	}
 
 	public void offButtonWasPushed(int slot) {
 
 		offCommands[slot].execute();
-		undoCommand = offCommands[slot];
+		undoCommands.add(offCommands[slot]);
 	}
 
-	public void undoButtonWasPushed() { undoCommand.undo(); }
+	public void undoButtonWasPushed() {
+		if (!undoCommands.isEmpty()) undoCommands.pop().undo();
+		//else System.out.println("No previous action.");
+	}
 
 	@Override
 	public String toString() {

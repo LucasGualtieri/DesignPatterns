@@ -8,14 +8,20 @@ import src.Command.Commands.CeilingFan.CeilingFanMediumCommand;
 import src.Command.Commands.CeilingFan.CeilingFanOffCommand;
 import src.Command.Commands.GarageDoor.GarageDoorDownCommand;
 import src.Command.Commands.GarageDoor.GarageDoorUpCommand;
+import src.Command.Commands.Hottub.HottubOffCommand;
+import src.Command.Commands.Hottub.HottubOnCommand;
 import src.Command.Commands.Lights.LightOffCommand;
 import src.Command.Commands.Lights.LightOnCommand;
 import src.Command.Commands.Stereo.StereoOffCommand;
 import src.Command.Commands.Stereo.StereoOnWithCDCommand;
+import src.Command.Commands.TV.TVOffCommand;
+import src.Command.Commands.TV.TVOnCommand;
 import src.Command.Receivers.CeilingFan;
 import src.Command.Receivers.GarageDoor;
+import src.Command.Receivers.Hottub;
 import src.Command.Receivers.Light;
 import src.Command.Receivers.Stereo;
+import src.Command.Receivers.TV;
 
 public class RemoteLoader {
 
@@ -42,18 +48,24 @@ public class RemoteLoader {
 		remote.undoButtonWasPushed();
 	}
 
-	public static void main(String[] args) {
-		
-		RemoteControl remote = new RemoteControl();
+	static void TestingUndo(RemoteControl remote) {
 
+		remote.onButtonWasPushed(0);
+		remote.offButtonWasPushed(1);
+		remote.undoButtonWasPushed();
+		remote.onButtonWasPushed(1);
+		remote.undoButtonWasPushed();
+		remote.undoButtonWasPushed();
+	}
+
+	static void RemoteSetup(RemoteControl remote) {
+		
 		Light livingRoomLight = new Light("Living Room");
 		Light kitchenRoomLight = new Light("Kitchen");
 
 		CeilingFan ceilingFan = new CeilingFan("Living Room");
 
 		GarageDoor garageDoor = new GarageDoor();
-
-		Stereo stereo = new Stereo("Living Room");
 
 		Command ceilingFanHigh = new CeilingFanHighCommand(ceilingFan);
 		Command ceilingFanMedium = new CeilingFanMediumCommand(ceilingFan);
@@ -69,15 +81,6 @@ public class RemoteLoader {
 		Command garageDoorUp = new GarageDoorUpCommand(garageDoor);
 		Command garageDoorDown = new GarageDoorDownCommand(garageDoor);
 
-		Command stereoOnWithCD = new StereoOnWithCDCommand(stereo);
-		Command stereoOff = new StereoOffCommand(stereo);
-
-		Command[] partyOn = { livingRoomLightOn, stereoOnWithCD };
-		Command[] partyOff = { livingRoomLightOff, stereoOff };
-
-		Command partyOnMacro = new MacroCommand(partyOn);
-		Command partyOffMacro = new MacroCommand(partyOff);
-
 		int slot = 0;
 		remote.setCommand(slot++, ceilingFanHigh, ceilingFanOff);
 		remote.setCommand(slot++, ceilingFanMedium, ceilingFanOff);
@@ -85,16 +88,52 @@ public class RemoteLoader {
 		remote.setCommand(slot++, livingRoomLightOn, livingRoomLightOff);
 		remote.setCommand(slot++, kitchenRoomLightOn, kitchenRoomLightOff);
 		remote.setCommand(slot++, garageDoorUp, garageDoorDown);
-		remote.setCommand(slot++, stereoOnWithCD, stereoOff);
+	}
+
+	static void TestingMacro(RemoteControl remote) {
+
+		Light livingRoomLight = new Light("Living Room");
+		TV tv = new TV("Living Room");
+		Stereo stereo = new Stereo("Living Room");
+		Hottub hottub = new Hottub();
+
+		Command livingRoomLightOn = new LightOnCommand(livingRoomLight);
+		Command livingRoomLightOff = new LightOffCommand(livingRoomLight);
+
+		Command stereoOnWithCD = new StereoOnWithCDCommand(stereo);
+		Command stereoOff = new StereoOffCommand(stereo);
+
+		Command tvOn = new TVOnCommand(tv);
+		Command tvOff = new TVOffCommand(tv);
+
+		Command hottubOn = new HottubOnCommand(hottub);
+		Command hottubOff = new HottubOffCommand(hottub);
+
+		Command[] partyOff = { livingRoomLightOff, stereoOff, tvOff, hottubOff };
+
+		Command partyOnMacro = new MacroCommand(livingRoomLightOn, stereoOnWithCD, tvOn, hottubOn);
+		Command partyOffMacro = new MacroCommand(partyOff);
+
+		remote.setCommand(6, partyOnMacro, partyOffMacro);
+
+		System.out.println("--- Pushing Macro On ---");
+		remote.onButtonWasPushed(6);
+		System.out.println("--- Pushing Macro Off ---");
+		remote.offButtonWasPushed(6);
+	}
+
+	public static void main(String[] args) {
+		
+		RemoteControl remote = new RemoteControl();
+
+		RemoteSetup(remote);
 
 		System.out.println(remote);
 
 		//TestingAllTheButtons(remote);
 
-		remote.onButtonWasPushed(0);
-		remote.offButtonWasPushed(1);
-		remote.undoButtonWasPushed();
-		remote.onButtonWasPushed(1);
-		remote.undoButtonWasPushed();
+		TestingUndo(remote);
+
+		//TestingMacro(remote);
 	}
 }
