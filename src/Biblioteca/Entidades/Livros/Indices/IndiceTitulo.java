@@ -10,11 +10,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import src.Biblioteca.Arquivo;
-import src.Biblioteca.Registro;
 import src.Biblioteca.Entidades.Livros.Livro;
-import src.Biblioteca.EstruturasDeDados.ListaInvertida;
-import src.Biblioteca.Indices.Indice;
+import src.Biblioteca.EstruturasDeDados.Invertida.ListaInvertida;
+import src.Biblioteca.Registro.Registro;
+import src.Biblioteca.Utils.DataFileManager;
+import src.Biblioteca.Utils.Indice;
 
 public class IndiceTitulo implements Indice {
 
@@ -99,7 +99,7 @@ public class IndiceTitulo implements Indice {
 		}
 	}
 
-	public List<Registro> read(Arquivo arquivo, String string) throws Exception {
+	public List<Registro> read(DataFileManager arquivo, String string) throws Exception {
 
 		List<String> palavras = LimparString(string);
 
@@ -141,5 +141,11 @@ public class IndiceTitulo implements Indice {
 		for (int i : conjunto2) conjunto2Set.add(i);
 
 		conjunto1.retainAll(conjunto2Set);
+	}
+
+	@Override
+	public Registro read(Registro registro, Indice direto) throws Exception {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'read'");
 	}
 }

@@ -4,12 +4,11 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.lang.reflect.Constructor;
 import java.text.NumberFormat;
 import java.util.Locale;
 
-import src.Biblioteca.Lib;
-import src.Biblioteca.Registros.Registro;
+import src.Biblioteca.Registro.Registro;
+import src.Biblioteca.Utils.Util;
 
 public class Livro implements Registro {
 	
@@ -18,13 +17,12 @@ public class Livro implements Registro {
 	private String titulo;
 	private String autor;
 	private float preco;
+	private long address;
 
 	@SuppressWarnings("deprecation")
 	Locale localeBR = new Locale("pt", "BR");
 
-	public static Constructor<Livro> getConstructor() throws NoSuchMethodException, SecurityException {
-		return Livro.class.getConstructor();
-	}
+	public Registro clone() { return null; }
 
 	public Livro() { this(-1, "null", "null", -0F); }
 
@@ -37,7 +35,7 @@ public class Livro implements Registro {
 		this.preco = preco;
 	}
 
-	public Livro(byte[] array) throws Exception { fromByteArray(array); }
+	public Livro(byte[] array) { fromByteArray(array); }
 
 	public byte[] toByteArray() throws Exception {
 
@@ -60,7 +58,8 @@ public class Livro implements Registro {
 		ByteArrayInputStream ba_in;
 		
 		try {
-			ba_in= new ByteArrayInputStream(ba);
+
+			ba_in = new ByteArrayInputStream(ba);
 			DataInputStream dis = new DataInputStream(ba_in);
 
 			this.ID = dis.readInt();
@@ -68,9 +67,9 @@ public class Livro implements Registro {
 			this.titulo = dis.readUTF();
 			this.autor = dis.readUTF();
 			this.preco = dis.readFloat();
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
+
+		catch (Exception e) { e.printStackTrace(); }
 	}
 
 	// Função para ler o ISBN e testar se é um ISBN valído (em termos do comprimento da string)
@@ -82,11 +81,11 @@ public class Livro implements Registro {
 
 		do {
 			if (invalid) {
-				Lib.cprintf(Lib.BOLD + Lib.RED, "Valor inválido, ");
+				Util.cprintf(Util.BOLD + Util.RED, "Valor inválido, ");
 				System.out.print("tente novamente: ");
 			}
 
-			value = Lib.readString();
+			value = Util.readString();
 
 			if (value.length() != 13 && value.length() != 0
 				|| (value.length() == 0 && !update)
@@ -138,11 +137,11 @@ public class Livro implements Registro {
 	// Função que printa o cabeçalho com os dados dos livros em formato CSV com cores
 	public void printHeaderCSV() {
 		System.out.println(
-			Lib.BOLD + Lib.YELLOW + "ID, " +
-			Lib.CYAN + "ISBN, " +
-			Lib.RED + "Título, " +
-			Lib.BLUE + "Autor, " + 
-			Lib.GREEN + "Preço" + Lib.RESET
+			Util.BOLD + Util.YELLOW + "ID, " +
+			Util.CYAN + "ISBN, " +
+			Util.RED + "Título, " +
+			Util.BLUE + "Autor, " + 
+			Util.GREEN + "Preço" + Util.RESET
 		);
 	}
 
@@ -150,12 +149,12 @@ public class Livro implements Registro {
 	public String toCSV() {
 		String str;
 
-		str = Lib.BOLD + Lib.YELLOW + this.ID + ", ";
-		str += Lib.CYAN + mascaraISBN() + ", ";
-		str += Lib.RED + this.titulo  + ", ";
-		str += Lib.BLUE + this.autor  + ", ";
-		str += Lib.GREEN + NumberFormat.getCurrencyInstance(localeBR).format(this.preco);
-		str += Lib.RESET;
+		str = Util.BOLD + Util.YELLOW + this.ID + ", ";
+		str += Util.CYAN + mascaraISBN() + ", ";
+		str += Util.RED + this.titulo  + ", ";
+		str += Util.BLUE + this.autor  + ", ";
+		str += Util.GREEN + NumberFormat.getCurrencyInstance(localeBR).format(this.preco);
+		str += Util.RESET;
 
 		return str + "\n";
 	}
@@ -164,12 +163,12 @@ public class Livro implements Registro {
 
 		String str = "";
 		if (this.ID != -1) {
-			str += Lib.YELLOW + Lib.BOLD + "ID: " + Lib.RESET + this.ID + "\n";
+			str += Util.YELLOW + Util.BOLD + "ID: " + Util.RESET + this.ID + "\n";
 		}
-		str += Lib.CYAN + Lib.BOLD + "ISBN: " + Lib.RESET + this.ISBN;
-		str += Lib.RED + Lib.BOLD + "\nTítulo: " + Lib.RESET + this.titulo;
-		str += Lib.BLUE + Lib.BOLD + "\nAutor: " + Lib.RESET + this.autor;
-		str += Lib.GREEN + Lib.BOLD + "\nPreço: " + Lib.RESET + NumberFormat.getCurrencyInstance(localeBR).format(this.preco);
+		str += Util.CYAN + Util.BOLD + "ISBN: " + Util.RESET + this.ISBN;
+		str += Util.RED + Util.BOLD + "\nTítulo: " + Util.RESET + this.titulo;
+		str += Util.BLUE + Util.BOLD + "\nAutor: " + Util.RESET + this.autor;
+		str += Util.GREEN + Util.BOLD + "\nPreço: " + Util.RESET + NumberFormat.getCurrencyInstance(localeBR).format(this.preco);
 
 		return str;
 	}
@@ -177,6 +176,7 @@ public class Livro implements Registro {
 	public void setID(int i) { this.ID = i; }
 	public int getID() { return this.ID; }
 	
+	public void setISBN(String isbn) { this.ISBN = isbn; }
 	public String getISBN() { return this.ISBN; }
 
 	public void setTitulo(String titulo) { this.titulo = titulo; }
@@ -186,4 +186,8 @@ public class Livro implements Registro {
 	public String getAutor() { return this.autor; }
 
 	public float getPreco() { return this.preco; }
+	public void setPreco(float preco) { this.preco = preco; }
+
+	public void setAddress(long address) { this.address = address; }
+	public long getAddress() { return address; }
 }

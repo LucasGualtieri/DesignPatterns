@@ -7,8 +7,8 @@ import java.io.DataOutputStream;
 import java.lang.reflect.Constructor;
 import java.util.Locale;
 
-import src.Biblioteca.Lib;
-import src.Biblioteca.Registro;
+import src.Biblioteca.Registro.Registro;
+import src.Biblioteca.Utils.Util;
 
 // Para fazer um relacionamento 1->N com Autores de Livros precisarei:
 //		Criar uma chave estrangeira em Livro: IDAutor
@@ -34,6 +34,9 @@ public class Autor implements Registro {
 	public static Constructor<Autor> getConstructor() throws NoSuchMethodException, SecurityException {
 		return Autor.class.getConstructor();
 	}
+
+	@Override
+	public Registro clone() { return null; }
 
 	public Autor() { this(-1, "null", "null", "null", -1); }
 
@@ -94,11 +97,11 @@ public class Autor implements Registro {
 
 		do {
 			if (invalid) {
-				Lib.cprintf(Lib.BOLD + Lib.RED, "Valor inválido, ");
+				Util.cprintf(Util.BOLD + Util.RED, "Valor inválido, ");
 				System.out.print("tente novamente: ");
 			}
 
-			value = Lib.readString();
+			value = Util.readString();
 
 			if (value.length() != 11 && value.length() != 0
 				|| (value.length() == 0 && !update)
@@ -135,15 +138,15 @@ public class Autor implements Registro {
 		if (aux.length() > 0) this.CPF = aux;
 
 		System.out.print("Insira o nome do autor: ");
-		aux = Lib.readString();
+		aux = Util.readString();
 		if (aux.length() > 0) this.nome = aux;
 		
 		System.out.print("Insira o sobrenome do autor: ");
-		aux = Lib.readString();
+		aux = Util.readString();
 		if (aux.length() > 0) this.sobrenome = aux;
 
 		System.out.print("Insira a idade do autor: ");
-		int auxInt = Lib.readInt();
+		int auxInt = Util.readInt();
 		if (auxInt > 0) this.idade = auxInt;
 
 	}
@@ -165,11 +168,11 @@ public class Autor implements Registro {
 
 	public void printHeaderCSV() {
 		System.out.println(
-			Lib.BOLD + Lib.YELLOW + "ID, " +
-			Lib.CYAN + "CPF, " +
-			Lib.RED + "Nome, " +
-			Lib.BLUE + "Sobrenome, " +
-			Lib.GREEN + "Idade" + Lib.RESET
+			Util.BOLD + Util.YELLOW + "ID, " +
+			Util.CYAN + "CPF, " +
+			Util.RED + "Nome, " +
+			Util.BLUE + "Sobrenome, " +
+			Util.GREEN + "Idade" + Util.RESET
 		);
 	}
 
@@ -177,12 +180,12 @@ public class Autor implements Registro {
 
 		String str;
 
-		str = Lib.BOLD + Lib.YELLOW + this.ID + ", ";
-		str += Lib.CYAN + mascaraCPF() + ", ";
-		str += Lib.RED + this.nome + ", ";
-		str += Lib.BLUE + this.sobrenome  + ", ";
-		str += Lib.GREEN + this.idade;
-		str += Lib.RESET;
+		str = Util.BOLD + Util.YELLOW + this.ID + ", ";
+		str += Util.CYAN + mascaraCPF() + ", ";
+		str += Util.RED + this.nome + ", ";
+		str += Util.BLUE + this.sobrenome  + ", ";
+		str += Util.GREEN + this.idade;
+		str += Util.RESET;
 
 		return str + "\n";
 	}
@@ -191,12 +194,12 @@ public class Autor implements Registro {
 
 		String str = "";
 		if (this.ID != -1) {
-			str += Lib.YELLOW + Lib.BOLD + "ID: " + Lib.RESET + this.ID + "\n";
+			str += Util.YELLOW + Util.BOLD + "ID: " + Util.RESET + this.ID + "\n";
 		}
-		str += Lib.CYAN + Lib.BOLD + "CPF: " + Lib.RESET + mascaraCPF();
-		str += Lib.RED + Lib.BOLD + "\nNome: " + Lib.RESET + this.nome;
-		str += Lib.BLUE + Lib.BOLD + "\nSobrenome: " + Lib.RESET + this.sobrenome;
-		str += Lib.GREEN + Lib.BOLD + "\nIdade: " + Lib.RESET + this.idade;
+		str += Util.CYAN + Util.BOLD + "CPF: " + Util.RESET + mascaraCPF();
+		str += Util.RED + Util.BOLD + "\nNome: " + Util.RESET + this.nome;
+		str += Util.BLUE + Util.BOLD + "\nSobrenome: " + Util.RESET + this.sobrenome;
+		str += Util.GREEN + Util.BOLD + "\nIdade: " + Util.RESET + this.idade;
 
 		return str;
 	}
@@ -214,12 +217,21 @@ public class Autor implements Registro {
 
 	public String getCPF() { return this.CPF; }
 	
-	public String getNome() { return this.nome; }
+	public String getName() { return this.nome; }
 
 	public String getSobrenome() { return this.sobrenome; }
 
 	public int getIdade() { return this.idade; }
 
 	@Override
-	public Registro newInstance() { return new Autor(); }
+	public void setAddress(long address) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'setAddress'");
+	}
+
+	@Override
+	public long getAddress() {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'getAddress'");
+	}
 }

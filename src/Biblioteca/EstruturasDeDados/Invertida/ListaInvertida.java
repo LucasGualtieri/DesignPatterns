@@ -1,4 +1,4 @@
-package src.Biblioteca.EstruturasDeDados;
+package src.Biblioteca.EstruturasDeDados.Invertida;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

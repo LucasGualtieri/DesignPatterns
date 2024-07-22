@@ -106,7 +106,7 @@ static <T extends Registro> void RecoverBackup(Arquivo<T> arquivo) throws Except
 
 	System.out.print("\nEscolha uma das opções acima: ");
 
-	int escolha = Lib.ReadChoice(i);
+	int escolha = Util.ReadChoice(i);
 
 	Path backup = files.get(escolha - 1);
 

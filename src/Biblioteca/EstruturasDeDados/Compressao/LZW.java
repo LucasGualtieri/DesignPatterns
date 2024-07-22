@@ -17,8 +17,8 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
-import src.Biblioteca.Lib;
 import src.Biblioteca.EstruturasDeDados.Tuplas.Tuple;
+import src.Biblioteca.Utils.Util;
 
 public class LZW {
 
@@ -147,24 +147,24 @@ public class LZW {
 
 		sb.append(String.format("Um total de %d bytes foram comprimidos para %d bytes, resultando numa taxa compressão total de %s.\n\n", totalBytes, totalComprimido, taxaDeCompressaoTotal));
 
-		sb.append(Lib.RED + Lib.BOLD + "Índice, ");
-		sb.append(Lib.GREEN + "Arquivo, ");
-		sb.append(Lib.BLUE + "Tamanho Original, ");
-		sb.append(Lib.YELLOW + "Tamanho Comprimido, ");
-		sb.append(Lib.CYAN + "Taxa de Compressão\n");
+		sb.append(Util.RED + Util.BOLD + "Índice, ");
+		sb.append(Util.GREEN + "Arquivo, ");
+		sb.append(Util.BLUE + "Tamanho Original, ");
+		sb.append(Util.YELLOW + "Tamanho Comprimido, ");
+		sb.append(Util.CYAN + "Taxa de Compressão\n");
 
 		int[] i = new int[1];
 
 		taxasDeCompressao.forEach((x) -> {
 			String taxaDeCompressao = String.format("%.2f%%\n", 100 - (x.getValue().getValue() * 100f) / x.getValue().getKey());
 
-			sb.append(Lib.RED + ++i[0] + " " + Lib.GREEN + x.getKey() + ", ");
-			sb.append(Lib.BLUE + x.getValue().getKey() + " bytes, ");
-			sb.append(Lib.YELLOW + x.getValue().getValue() + " bytes, ");
-			sb.append(Lib.CYAN + taxaDeCompressao);
+			sb.append(Util.RED + ++i[0] + " " + Util.GREEN + x.getKey() + ", ");
+			sb.append(Util.BLUE + x.getValue().getKey() + " bytes, ");
+			sb.append(Util.YELLOW + x.getValue().getValue() + " bytes, ");
+			sb.append(Util.CYAN + taxaDeCompressao);
 		});
 
-		sb.append(Lib.RESET);
+		sb.append(Util.RESET);
 
 		return sb.toString();
 	}

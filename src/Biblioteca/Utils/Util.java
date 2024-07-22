@@ -1,9 +1,9 @@
-package src.Biblioteca;
+package src.Biblioteca.Utils;
 
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
-public class Lib {
+public class Util {
 
 	// Variáveis usadas para printar mensagens com cores
 
@@ -25,10 +25,10 @@ public class Lib {
 	
 		do {
 			if (invalid) {
-				Lib.cprintf("BOLD RED", "Valor inválido, ");
+				Util.cprintf("BOLD RED", "Valor inválido, ");
 				System.out.print("tente novamente: ");
 			}
-			choice = Lib.readInt();
+			choice = Util.readInt();
 		} while (invalid = choice < 0 || choiceCount < choice);
 	
 		return choice;
@@ -60,9 +60,15 @@ public class Lib {
 		return value;
 	}
 
-	// Função para ler um float do teclado
 	public static float readFloat() throws InputMismatchException {
+		return readFloat("");
+	}
+
+	// Função para ler um float do teclado
+	public static float readFloat(String msg) throws InputMismatchException {
 		
+		System.out.print(msg);
+
 		float value = -1;
 
 		boolean invalid = false;
@@ -88,6 +94,13 @@ public class Lib {
 
 	// Função para ler uma string do teclado
 	public static String readString() {
+		return readString("");
+	}
+
+	// Função para ler uma string do teclado
+	public static String readString(String msg) {
+
+		System.out.print(msg);
 		
 		String value;
 

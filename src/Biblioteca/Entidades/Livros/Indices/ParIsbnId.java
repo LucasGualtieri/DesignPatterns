@@ -7,7 +7,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 
-import src.Biblioteca.EstruturasDeDados.RegistroHashExtensivel;
+import src.Biblioteca.EstruturasDeDados.Hash.RegistroHashExtensivel;
 
 public class ParIsbnId implements RegistroHashExtensivel<ParIsbnId> {
 

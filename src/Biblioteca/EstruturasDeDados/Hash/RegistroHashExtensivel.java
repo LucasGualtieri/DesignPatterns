@@ -1,4 +1,4 @@
-package src.Biblioteca.EstruturasDeDados;
+package src.Biblioteca.EstruturasDeDados.Hash;
 
 import java.io.IOException;
 

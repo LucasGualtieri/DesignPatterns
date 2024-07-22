@@ -1,6 +1,7 @@
-package src.Biblioteca.IndiceWrappers;
+package src.Biblioteca.Entidades.Livros.Indices;
 
-import src.Biblioteca.Registros.Registro;
+import src.Biblioteca.Registro.Registro;
+import src.Biblioteca.Utils.Indice;
 
 /**
  * IndiceDireto
@@ -20,7 +21,7 @@ public class IndiceDireto implements Indice {
 	}
 
 	@Override
-	public Registro read(Registro registro) throws Exception {
+	public Registro read(Registro registro, Indice direto) throws Exception {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'read'");
 	}

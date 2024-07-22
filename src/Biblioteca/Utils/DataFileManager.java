@@ -1,10 +1,10 @@
-package src.Biblioteca;
+package src.Biblioteca.Utils;
 
 import java.io.*;
 import java.util.*;
 
-import src.Biblioteca.IndiceWrappers.*;
-import src.Biblioteca.Registros.*;
+import src.Biblioteca.Registro.Registro;
+import src.Biblioteca.Registro.RegistroFactory;
 
 public abstract class DataFileManager {
 
@@ -17,17 +17,18 @@ public abstract class DataFileManager {
 	protected List<Indice> indices;
 	private Indice indiceDireto;
 
-	protected DataFileManager(RegistroFactory registroFactory, String filePath) throws FileNotFoundException, IOException, Exception {
-		
+	protected DataFileManager(String name, RegistroFactory registroFactory, String filePath) throws FileNotFoundException, IOException, Exception {
+
+		this.name = name;
+
 		initializeDataFile(filePath + getNomePlural());
 
 		this.registroFactory = registroFactory;
 		this.filePath = filePath;
 
-		indiceDireto = new IndiceDireto();
+		indiceDireto = new IndiceDireto(filePath + name);
 
 		indices = new ArrayList<>();
-
 		indices.add(indiceDireto);
 	}
 
@@ -45,8 +46,37 @@ public abstract class DataFileManager {
 	// desse jeito ao lançar a Exception eu já consigo ser especificio com relacao ao problema.
 	// A partir de agora eu vou simplificar muito o TP01 (lidar com registros excluidos), vou partir por esquema % 1000.
 
+	private void IndicesCreate(Registro registro) throws Exception {
+		for (Indice i : indices) i.create(registro);
+	}
+
 	// Esse método cria um registro no final do arquivo, retorna seu ID. E atualiza seus indices. 
-	public int create(Registro registro) { return -1; }
+	public int create(Registro registro) throws Exception {
+
+		int lastID;
+
+		file.seek(0);
+		lastID = file.readInt() + 1;
+
+		file.seek(0);
+		file.writeInt(lastID);
+
+		byte[] ba = registro.toByteArray();
+
+		file.seek(file.length());
+		long endereco = file.getFilePointer();
+
+		file.writeByte(' ');
+		file.writeShort(ba.length);
+		file.write(ba);
+
+		registro.setID(lastID);
+		registro.setAddress(endereco);
+
+		IndicesCreate(registro);
+
+		return registro.getID();
+	}
 
 	// Método que busca no arquivo de dados a partir do ID usando o indiceDireto
 	public Registro read(int id) { return null; }
@@ -67,20 +97,19 @@ public abstract class DataFileManager {
 
 		while (file.getFilePointer() < len) {
 
+			byte lapide = file.readByte();
 			short tamanhoRegistro = file.readShort();
-			// System.out.println("tamanhoRegsitro: " + tamanhoRegistro);
-			// System.out.println("address: " + (file.getFilePointer() - (long)2));
 			
-			if (tamanhoRegistro > 0) {
+			if (lapide != '*') {
+
 				
 				byte[] registroBytes = new byte[tamanhoRegistro];
 				file.read(registroBytes);
 
-				// Esta linha esta causando problemas
 				list.add(registroFactory.newRegistro(registroBytes));
 			}
 
-			else file.skipBytes(Math.abs(tamanhoRegistro));
+			else file.skipBytes(tamanhoRegistro);
 		}
 
 		// Acho que é mais elegante apenas passar a lista e testar se é nonEmpty la fora

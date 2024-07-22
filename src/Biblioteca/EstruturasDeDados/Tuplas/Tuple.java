@@ -6,7 +6,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import src.Biblioteca.EstruturasDeDados.RegistroHashExtensivel;
+import src.Biblioteca.EstruturasDeDados.Hash.RegistroHashExtensivel;
 
 // Quando eu for trabalhar com os Indices Indiretos precisarei, acredito eu setar uma tamanho máximo para as strings
 

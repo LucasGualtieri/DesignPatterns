@@ -1,26 +1,25 @@
 package src.Biblioteca.Entidades.Livros;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
-import src.Biblioteca.DataFileManager;
-import src.Biblioteca.Principal;
-import src.Biblioteca.IndiceWrappers.Indice;
-import src.Biblioteca.Registros.LivroFactory;
+import src.Biblioteca.Utils.CRUD;
+import src.Biblioteca.Utils.DataFileManager;
+import src.Biblioteca.Utils.Indice;
 
 public class LivroFileManager extends DataFileManager {
 
 	// IndicadorDeTamanho + ID + ISBN + Titulo + Autor + Preço
 	Indice listaInvertidaTitulos, indiceIndiretoISBN;
 
-	public LivroFileManager() {
+	public LivroFileManager() throws FileNotFoundException, IOException, Exception {
 
-		super(new LivroFactory(), Principal.PATH + "Livros/Dados/");
-
-		name = "Livro";	
+		super("Livro", new LivroFactory(), CRUD.PATH + "Livros/Dados/");
 
 		//listaInvertidaTitulos = new IndiceTitulo(filePath + nome);
 		//indiceIndiretoISBN = new IndiceIsbnId(filePath + nome);
+
+		indiceIndiretoISBN = new Teste();
 
 		//indices.add(listaInvertidaTitulos);
 		//indices.add(indiceIndiretoISBN);

@@ -1,4 +1,4 @@
-package src.Biblioteca.Registros;
+package src.Biblioteca.Registro;
 
 public abstract class RegistroFactory {
 
@@ -8,8 +8,6 @@ public abstract class RegistroFactory {
 	public abstract Registro newRegistro(byte[] registroBytes);
 	public abstract Registro readNewRegistro();
 	public abstract Registro readNewRegistro(Registro registro);
-
-	public void printHeader() { registro.printHeader(); }
-
-	public void printHeaderCSV() { registro.printHeaderCSV(); }
+	public abstract void printHeader();
+	public abstract void printHeaderCSV();
 }
