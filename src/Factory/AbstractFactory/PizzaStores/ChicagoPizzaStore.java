@@ -1,7 +1,6 @@
 package src.Factory.AbstractFactory.PizzaStores;
 
 import src.Factory.AbstractFactory.IngredientFactories.ChicagoPizzaIngredientFactory;
-import src.Factory.AbstractFactory.IngredientFactories.PizzaIngredientFactory;
 import src.Factory.AbstractFactory.Pizzas.CheesePizza;
 import src.Factory.AbstractFactory.Pizzas.ClamPizza;
 import src.Factory.AbstractFactory.Pizzas.PepperoniPizza;

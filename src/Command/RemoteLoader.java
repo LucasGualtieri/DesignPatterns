@@ -59,7 +59,7 @@ public class RemoteLoader {
 	}
 
 	static void RemoteSetup(RemoteControl remote) {
-		
+
 		Light livingRoomLight = new Light("Living Room");
 		Light kitchenRoomLight = new Light("Kitchen");
 
@@ -123,7 +123,7 @@ public class RemoteLoader {
 	}
 
 	public static void main(String[] args) {
-		
+
 		RemoteControl remote = new RemoteControl();
 
 		RemoteSetup(remote);

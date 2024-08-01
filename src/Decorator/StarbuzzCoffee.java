@@ -9,9 +9,9 @@ import src.Decorator.Condiments.Soy;
 import src.Decorator.Condiments.Whip;
 
 public class StarbuzzCoffee {
-	
+
 	public static void main(String[] args) {
-		
+
 		Beverage beverage = new Espresso();
 		System.out.printf("%s $%.2f\n", beverage, beverage.cost());
 
