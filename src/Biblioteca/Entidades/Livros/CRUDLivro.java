@@ -14,7 +14,7 @@ public class CRUDLivro extends CRUD {
 	public CRUDLivro() throws FileNotFoundException, IOException, Exception {
 
 		fileManager = new LivroFileManager();
-		registroFactory = new LivroFactory();	
+		registroFactory = new LivroFactory();
 	}
 
 	public int menu() {
@@ -38,7 +38,7 @@ public class CRUDLivro extends CRUD {
 			System.out.print("Escolha uma das opções acima: ");
 
 			choice = Util.ReadChoice(7);
-			
+
 			try {
 				if (choice == 1) create();
 				else if (choice == 2) read();
@@ -69,10 +69,10 @@ public class CRUDLivro extends CRUD {
 		System.out.println("\n0 - Voltar.");
 		System.out.print("\nEscolha uma das opções acima: ");
 
-		int choice = Util.ReadChoice(3);
+		// int choice = Util.ReadChoice(3);
 
 		List<Registro> registroList = new ArrayList<>();
-		Registro registro;
+		// Registro registro;
 
 		//switch (choice) {
 		//	case 1:

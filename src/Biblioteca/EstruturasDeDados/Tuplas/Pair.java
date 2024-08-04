@@ -1,17 +1,17 @@
 package src.Biblioteca.EstruturasDeDados.Tuplas;
 
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
+// import java.io.ByteArrayOutputStream;
+// import java.io.DataOutputStream;
 import java.io.IOException;
 
-import src.Biblioteca.ByteArrayFactory.ByteArrayFactory;
+// import src.Biblioteca.ByteArrayFactory.ByteArrayFactory;
 import src.Biblioteca.EstruturasDeDados.Hash.RegistroHashExtensivel;
 
 public class Pair<K, V> implements RegistroHashExtensivel<Pair<K, V>> {
 
-	private K key;
-	private V value;
-	private ByteArrayFactory keyByteArray, valueByteArray;
+	// private K key;
+	// private V value;
+	// private ByteArrayFactory keyByteArray, valueByteArray;
 
 	@Override
 	public short size() {
@@ -31,7 +31,7 @@ public class Pair<K, V> implements RegistroHashExtensivel<Pair<K, V>> {
 		//dos.write(valueByteArray.toByteArray(value));
 		//
 		//return ba_out.toByteArray();
-		
+
 		return null;
 	}
 

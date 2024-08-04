@@ -4,10 +4,13 @@
 mkdir -p bin
 
 # Compile the Java files
-javac -d bin -sourcepath .	\
-  *.java					\
-  ../Receivers/*.java		\
-  ../Commands/*.java		\
+javac -d bin -sourcepath .		\
+  *.java						\
+  ../Receivers/Light.java		\
+  ../Receivers/GarageDoor.java	\
+  ../Commands/*.java			\
+  ../Commands/GarageDoor/*.java	\
+  ../Commands/Lights/*.java		\
 
 # echo "Compilation complete."
 
